@@ -1397,6 +1397,76 @@ export type Database = {
           },
         ]
       }
+      documents_legaux: {
+        Row: {
+          categorie: string | null
+          commentaire: string | null
+          created_at: string
+          description: string | null
+          fichier_nom: string
+          fichier_taille: number | null
+          fichier_type: string | null
+          fichier_url: string
+          id: string
+          programme_id: string
+          titre: string
+          updated_at: string
+          uploaded_by: string
+        }
+        Insert: {
+          categorie?: string | null
+          commentaire?: string | null
+          created_at?: string
+          description?: string | null
+          fichier_nom: string
+          fichier_taille?: number | null
+          fichier_type?: string | null
+          fichier_url: string
+          id?: string
+          programme_id: string
+          titre: string
+          updated_at?: string
+          uploaded_by: string
+        }
+        Update: {
+          categorie?: string | null
+          commentaire?: string | null
+          created_at?: string
+          description?: string | null
+          fichier_nom?: string
+          fichier_taille?: number | null
+          fichier_type?: string | null
+          fichier_url?: string
+          id?: string
+          programme_id?: string
+          titre?: string
+          updated_at?: string
+          uploaded_by?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "documents_legaux_programme_id_fkey"
+            columns: ["programme_id"]
+            isOneToOne: false
+            referencedRelation: "kpis_financiers_classe"
+            referencedColumns: ["programme_id"]
+          },
+          {
+            foreignKeyName: "documents_legaux_programme_id_fkey"
+            columns: ["programme_id"]
+            isOneToOne: false
+            referencedRelation: "kpis_financiers_programme"
+            referencedColumns: ["programme_id"]
+          },
+          {
+            foreignKeyName: "documents_legaux_programme_id_fkey"
+            columns: ["programme_id"]
+            isOneToOne: false
+            referencedRelation: "programmes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       enquetes: {
         Row: {
           classe_id: string | null
@@ -2462,6 +2532,55 @@ export type Database = {
         }
         Relationships: []
       }
+      module_enquete_config: {
+        Row: {
+          created_at: string
+          enquete_id: string | null
+          id: string
+          modele_enquete_id: string | null
+          module_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          enquete_id?: string | null
+          id?: string
+          modele_enquete_id?: string | null
+          module_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          enquete_id?: string | null
+          id?: string
+          modele_enquete_id?: string | null
+          module_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "module_enquete_config_enquete_id_fkey"
+            columns: ["enquete_id"]
+            isOneToOne: false
+            referencedRelation: "enquetes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "module_enquete_config_modele_enquete_id_fkey"
+            columns: ["modele_enquete_id"]
+            isOneToOne: false
+            referencedRelation: "modeles_enquete"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "module_enquete_config_module_id_fkey"
+            columns: ["module_id"]
+            isOneToOne: true
+            referencedRelation: "modules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       module_enseignants: {
         Row: {
           created_at: string
@@ -2494,6 +2613,72 @@ export type Database = {
             columns: ["module_catalogue_id"]
             isOneToOne: false
             referencedRelation: "module_catalogue"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      module_sessions: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          date_debut: string | null
+          date_fin: string | null
+          duree_heures: number
+          id: string
+          lieu_hors_site: string | null
+          module_id: string
+          notes: string | null
+          ordre: number | null
+          salle: string | null
+          titre: string
+          type_lieu: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          date_debut?: string | null
+          date_fin?: string | null
+          duree_heures?: number
+          id?: string
+          lieu_hors_site?: string | null
+          module_id: string
+          notes?: string | null
+          ordre?: number | null
+          salle?: string | null
+          titre: string
+          type_lieu?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          date_debut?: string | null
+          date_fin?: string | null
+          duree_heures?: number
+          id?: string
+          lieu_hors_site?: string | null
+          module_id?: string
+          notes?: string | null
+          ordre?: number | null
+          salle?: string | null
+          titre?: string
+          type_lieu?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "module_sessions_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "module_sessions_module_id_fkey"
+            columns: ["module_id"]
+            isOneToOne: false
+            referencedRelation: "modules"
             referencedColumns: ["id"]
           },
         ]
