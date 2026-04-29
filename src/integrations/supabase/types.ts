@@ -874,6 +874,50 @@ export type Database = {
           },
         ]
       }
+      demo_sessions: {
+        Row: {
+          captcha_verified: boolean
+          created_at: string
+          expires_at: string
+          id: string
+          invitation_code_id: string | null
+          ip_address: string | null
+          is_expired: boolean
+          role: string
+          user_agent: string | null
+        }
+        Insert: {
+          captcha_verified?: boolean
+          created_at?: string
+          expires_at?: string
+          id?: string
+          invitation_code_id?: string | null
+          ip_address?: string | null
+          is_expired?: boolean
+          role: string
+          user_agent?: string | null
+        }
+        Update: {
+          captcha_verified?: boolean
+          created_at?: string
+          expires_at?: string
+          id?: string
+          invitation_code_id?: string | null
+          ip_address?: string | null
+          is_expired?: boolean
+          role?: string
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "demo_sessions_invitation_code_id_fkey"
+            columns: ["invitation_code_id"]
+            isOneToOne: false
+            referencedRelation: "invitation_codes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       devis: {
         Row: {
           client_id: string | null
@@ -2108,6 +2152,45 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      invitation_codes: {
+        Row: {
+          code: string
+          created_at: string
+          created_by: string | null
+          description: string | null
+          expires_at: string | null
+          id: string
+          is_active: boolean
+          max_uses: number | null
+          updated_at: string
+          used_count: number
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          max_uses?: number | null
+          updated_at?: string
+          used_count?: number
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          max_uses?: number | null
+          updated_at?: string
+          used_count?: number
+        }
+        Relationships: []
       }
       invitations: {
         Row: {
