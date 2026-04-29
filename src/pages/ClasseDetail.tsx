@@ -406,7 +406,7 @@ export default function ClasseDetail() {
                           <TableCell>
                             <div className="flex items-center gap-3">
                               <Avatar className="h-9 w-9">
-                                <AvatarImage src={inscription.stagiaires?.photo_url || ""} />
+                                <SignedAvatarImage photoUrl={inscription.stagiaires?.photo_url} fallbackBucket="stagiaire-photos" />
                                 <AvatarFallback>
                                   {inscription.stagiaires 
                                     ? getInitials(inscription.stagiaires.nom, inscription.stagiaires.prenom)
@@ -551,7 +551,7 @@ export default function ClasseDetail() {
                                       onClick={() => navigate(`/enseignants/${affectation.enseignants!.id}`)}
                                     >
                                       <Avatar className="h-8 w-8">
-                                        <AvatarImage src={affectation.enseignants.photo_url || ""} />
+                                        <SignedAvatarImage photoUrl={affectation.enseignants.photo_url} fallbackBucket="enseignant-photos" />
                                         <AvatarFallback className="text-xs">
                                           {getInitials(affectation.enseignants.nom, affectation.enseignants.prenom)}
                                         </AvatarFallback>
