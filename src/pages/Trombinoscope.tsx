@@ -328,7 +328,7 @@ export default function Trombinoscope() {
               <CardHeader className="text-center">
                 <div className="flex justify-center mb-4">
                   <Avatar className="w-32 h-32">
-                    <AvatarImage src={stagiaire.photo_url || undefined} alt={`${stagiaire.prenom} ${stagiaire.nom}`} />
+                    <SignedAvatarImage photoUrl={stagiaire.photo_url} fallbackBucket="stagiaire-photos" alt={`${stagiaire.prenom} ${stagiaire.nom}`} />
                     <AvatarFallback className="text-2xl">
                       {stagiaire.prenom[0]}{stagiaire.nom[0]}
                     </AvatarFallback>
