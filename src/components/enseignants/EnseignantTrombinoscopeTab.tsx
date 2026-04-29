@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { SignedAvatarImage } from "@/components/SignedAvatarImage";
 import { useToast } from "@/hooks/use-toast";
 import { Users } from "lucide-react";
 
@@ -184,7 +185,7 @@ export function EnseignantTrombinoscopeTab() {
               <CardHeader className="text-center">
                 <div className="flex justify-center mb-4">
                   <Avatar className="w-24 h-24">
-                    <AvatarImage src={stagiaire.photo_url || undefined} alt={`${stagiaire.prenom} ${stagiaire.nom}`} />
+                    <SignedAvatarImage photoUrl={stagiaire.photo_url} fallbackBucket="stagiaire-photos" alt={`${stagiaire.prenom} ${stagiaire.nom}`} />
                     <AvatarFallback className="text-xl">
                       {stagiaire.prenom[0]}{stagiaire.nom[0]}
                     </AvatarFallback>
