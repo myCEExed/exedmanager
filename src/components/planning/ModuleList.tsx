@@ -184,7 +184,7 @@ export const ModuleList = ({ modules, conflicts, onModuleClick, filters, readOnl
                               {module.affectations.slice(0, 3).map((aff) => (
                                 aff.enseignants && (
                                   <Avatar key={aff.id} className="h-7 w-7 border-2 border-background">
-                                    <AvatarImage src={aff.enseignants.photo_url || ""} />
+                                    <SignedAvatarImage photoUrl={aff.enseignants.photo_url} fallbackBucket="enseignant-photos" />
                                     <AvatarFallback className="text-xs">
                                       {getInitials(aff.enseignants.nom, aff.enseignants.prenom)}
                                     </AvatarFallback>

@@ -296,7 +296,7 @@ export const ModuleEditDialog = ({ module, open, onOpenChange, onSave }: ModuleE
                     return (
                       <Badge key={id} variant="secondary" className="gap-1 pr-1">
                         <Avatar className="h-5 w-5">
-                          <AvatarImage src={ens.photo_url || ""} />
+                          <SignedAvatarImage photoUrl={ens.photo_url} fallbackBucket="enseignant-photos" />
                           <AvatarFallback className="text-[10px]">
                             {getInitials(ens.nom, ens.prenom)}
                           </AvatarFallback>
@@ -338,7 +338,7 @@ export const ModuleEditDialog = ({ module, open, onOpenChange, onSave }: ModuleE
                           className="accent-primary"
                         />
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={ens.photo_url || ""} />
+                          <SignedAvatarImage photoUrl={ens.photo_url} fallbackBucket="enseignant-photos" />
                           <AvatarFallback>
                             {getInitials(ens.nom, ens.prenom)}
                           </AvatarFallback>
