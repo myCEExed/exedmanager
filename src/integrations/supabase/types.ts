@@ -4513,6 +4513,14 @@ export type Database = {
         Args: { _programme_id: string; _user_id: string }
         Returns: boolean
       }
+      enseignant_shares_classe_with_stagiaire: {
+        Args: { _stagiaire_id: string; _user_id: string }
+        Returns: boolean
+      }
+      enseignants_share_classe: {
+        Args: { _other_enseignant_id: string; _user_id: string }
+        Returns: boolean
+      }
       find_matching_classe_for_transfer: {
         Args: { p_date_transfert: string; p_enseignant_id: string }
         Returns: {
@@ -4539,12 +4547,29 @@ export type Database = {
         Args: { _programme_id: string; _user_id: string }
         Returns: boolean
       }
+      is_my_enseignant: {
+        Args: { _enseignant_id: string; _user_id: string }
+        Returns: boolean
+      }
+      is_my_stagiaire: {
+        Args: { _stagiaire_id: string; _user_id: string }
+        Returns: boolean
+      }
+      photo_entity_id: { Args: { _name: string }; Returns: string }
       stagiaire_in_classe: {
         Args: { _classe_id: string; _user_id: string }
         Returns: boolean
       }
       stagiaire_in_programme: {
         Args: { _programme_id: string; _user_id: string }
+        Returns: boolean
+      }
+      stagiaire_shares_classe_with_enseignant: {
+        Args: { _enseignant_id: string; _user_id: string }
+        Returns: boolean
+      }
+      stagiaires_share_classe: {
+        Args: { _other_stagiaire_id: string; _user_id: string }
         Returns: boolean
       }
     }
