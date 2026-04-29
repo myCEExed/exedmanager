@@ -77,15 +77,13 @@ export function ProfilePhotoUpload({
 
       if (uploadError) throw uploadError;
 
-      // Get public URL
-      const { data: { publicUrl } } = supabase.storage
-        .from(bucketName)
-        .getPublicUrl(fileName);
+      // Bucket privé : on stocke le path. Une URL signée est générée au rendu.
+      const storedPath = `${bucketName}/${fileName}`;
 
       // Update user record
       const { error: updateError } = await supabase
         .from(tableName)
-        .update({ photo_url: publicUrl })
+        .update({ photo_url: storedPath })
         .eq("id", userId);
 
       if (updateError) throw updateError;

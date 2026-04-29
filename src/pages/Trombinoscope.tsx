@@ -3,7 +3,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { SignedAvatarImage } from "@/components/SignedAvatarImage";
 import { useToast } from "@/hooks/use-toast";
 import { useTrombinoscopeExport } from "@/hooks/useTrombinoscopeExport";
 import { FileText, Presentation, Users, X } from "lucide-react";
@@ -327,7 +328,7 @@ export default function Trombinoscope() {
               <CardHeader className="text-center">
                 <div className="flex justify-center mb-4">
                   <Avatar className="w-32 h-32">
-                    <AvatarImage src={stagiaire.photo_url || undefined} alt={`${stagiaire.prenom} ${stagiaire.nom}`} />
+                    <SignedAvatarImage photoUrl={stagiaire.photo_url} fallbackBucket="stagiaire-photos" alt={`${stagiaire.prenom} ${stagiaire.nom}`} />
                     <AvatarFallback className="text-2xl">
                       {stagiaire.prenom[0]}{stagiaire.nom[0]}
                     </AvatarFallback>

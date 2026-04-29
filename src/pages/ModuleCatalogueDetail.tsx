@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { format } from "date-fns";
+import { SignedPhotoImg } from "@/components/SignedPhotoImg";
 import { fr } from "date-fns/locale";
 import { normalizeYouTubeUrl } from "@/lib/utils";
 
@@ -417,11 +418,13 @@ const ModuleCatalogueDetail = () => {
                       <CardContent className="p-4">
                         <div className="flex items-start gap-4">
                           <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
-                            {ens.photo_url ? (
-                              <img src={ens.photo_url} alt="" className="h-full w-full object-cover" />
-                            ) : (
-                              <User className="h-6 w-6 text-primary" />
-                            )}
+                            <SignedPhotoImg
+                              photoUrl={ens.photo_url}
+                              fallbackBucket="enseignant-photos"
+                              alt=""
+                              className="h-full w-full object-cover"
+                              fallback={<User className="h-6 w-6 text-primary" />}
+                            />
                           </div>
                           <div className="flex-1">
                             <h4 className="font-medium">{ens.prenom} {ens.nom}</h4>

@@ -1,5 +1,6 @@
 import { Document, Packer, Paragraph, ImageRun, TextRun, Table, TableCell, TableRow, WidthType } from 'docx';
 import PptxGenJS from 'pptxgenjs';
+import { resolveSignedPhotoUrl } from '@/lib/signedPhotoUrl';
 
 interface StagiaireWithPhoto {
   id: string;
@@ -25,7 +26,9 @@ export const useTrombinoscopeExport = () => {
           // Add photo if available
           if (stagiaire.photo_url) {
             try {
-              const response = await fetch(stagiaire.photo_url);
+              const signedUrl = await resolveSignedPhotoUrl(stagiaire.photo_url, 'stagiaire-photos');
+              if (!signedUrl) throw new Error('Cannot resolve signed URL');
+              const response = await fetch(signedUrl);
               const blob = await response.blob();
               const arrayBuffer = await blob.arrayBuffer();
               
@@ -165,13 +168,16 @@ export const useTrombinoscopeExport = () => {
           // Add photo if available
           if (stagiaire.photo_url) {
             try {
-              slide.addImage({
-                path: stagiaire.photo_url,
-                x: x,
-                y: y,
-                w: 2,
-                h: 2,
-              });
+              const signedUrl = await resolveSignedPhotoUrl(stagiaire.photo_url, 'stagiaire-photos');
+              if (signedUrl) {
+                slide.addImage({
+                  path: signedUrl,
+                  x: x,
+                  y: y,
+                  w: 2,
+                  h: 2,
+                });
+              }
             } catch (error) {
               console.error('Error adding image to slide:', error);
             }

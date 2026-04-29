@@ -13,6 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { SignedAvatarImage } from "@/components/SignedAvatarImage";
 import { useToast } from "@/hooks/use-toast";
 import { Search, UserPlus, Mail, Phone, MapPin, Download, Upload, Camera } from "lucide-react";
 import { z } from "zod";
@@ -729,7 +730,7 @@ export default function Stagiaires() {
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <Avatar className="w-16 h-16">
-                    <AvatarImage src={stagiaire.photo_url || undefined} alt={`${stagiaire.prenom} ${stagiaire.nom}`} />
+                    <SignedAvatarImage photoUrl={stagiaire.photo_url} fallbackBucket="stagiaire-photos" alt={`${stagiaire.prenom} ${stagiaire.nom}`} />
                     <AvatarFallback>
                       {stagiaire.prenom[0]}{stagiaire.nom[0]}
                     </AvatarFallback>
