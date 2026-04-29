@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import DOMPurify from "dompurify";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
@@ -7,6 +8,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Upload, X, Move, AlignLeft, AlignCenter, AlignRight, Eye, Edit } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+
+const SANITIZE_CONFIG = {
+  ALLOWED_TAGS: ['div', 'p', 'span', 'br', 'strong', 'em', 'b', 'i', 'u', 'ul', 'ol', 'li', 'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'small'],
+  ALLOWED_ATTR: ['style', 'class', 'href', 'target', 'rel'],
+};
 
 interface InvoiceTemplatePreviewProps {
   formData: {
@@ -418,7 +424,7 @@ export function InvoiceTemplatePreview({ formData, onChange }: InvoiceTemplatePr
           <div className={getAlignmentClass(formData.header_alignment)}>
             {formData.en_tete_html ? (
               <div 
-                dangerouslySetInnerHTML={{ __html: formData.en_tete_html }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(formData.en_tete_html, SANITIZE_CONFIG) }}
                 className="text-sm text-gray-600"
               />
             ) : (
@@ -527,7 +533,7 @@ export function InvoiceTemplatePreview({ formData, onChange }: InvoiceTemplatePr
           )}
           {formData.pied_page_html ? (
             <div 
-              dangerouslySetInnerHTML={{ __html: formData.pied_page_html }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(formData.pied_page_html, SANITIZE_CONFIG) }}
               className="text-xs text-gray-500"
             />
           ) : (
