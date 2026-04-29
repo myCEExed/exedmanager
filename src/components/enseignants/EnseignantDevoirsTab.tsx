@@ -140,7 +140,7 @@ export function EnseignantDevoirsTab() {
           }));
         
         setAssignedModules(modules);
-        const classeIds = [...new Set(modules.map(m => m.classe_id))];
+        const classeIds = [...new Set(modules.map(m => m.classe_id))] as string[];
         setAssignedClasseIds(classeIds);
       }
     } catch (error) {
