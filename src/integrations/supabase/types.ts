@@ -4497,8 +4497,20 @@ export type Database = {
         }
         Returns: number
       }
+      enseignant_assigned_to_module: {
+        Args: { _module_id: string; _user_id: string }
+        Returns: boolean
+      }
       enseignant_can_see_stagiaire: {
         Args: { _enseignant_user_id: string; _stagiaire_id: string }
+        Returns: boolean
+      }
+      enseignant_in_classe: {
+        Args: { _classe_id: string; _user_id: string }
+        Returns: boolean
+      }
+      enseignant_in_programme: {
+        Args: { _programme_id: string; _user_id: string }
         Returns: boolean
       }
       find_matching_classe_for_transfer: {
@@ -4524,6 +4536,14 @@ export type Database = {
         Returns: boolean
       }
       is_gestionnaire_for_programme: {
+        Args: { _programme_id: string; _user_id: string }
+        Returns: boolean
+      }
+      stagiaire_in_classe: {
+        Args: { _classe_id: string; _user_id: string }
+        Returns: boolean
+      }
+      stagiaire_in_programme: {
         Args: { _programme_id: string; _user_id: string }
         Returns: boolean
       }
