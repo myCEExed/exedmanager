@@ -302,11 +302,10 @@ serve(async (req) => {
     )
 
   } catch (error) {
-    console.error('Error:', error)
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+    console.error('Detailed error (server-side only):', error)
     return new Response(
-      JSON.stringify({ error: errorMessage }),
-      { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 400 }
+      JSON.stringify({ error: 'Une erreur est survenue. Veuillez réessayer.' }),
+      { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }
     )
   }
 })

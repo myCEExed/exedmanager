@@ -202,11 +202,9 @@ EXEMPLES DE QUESTIONS FRÉQUENTES :
       }
     );
   } catch (error) {
-    console.error("Error in assistant-chat:", error);
+    console.error("Detailed error (server-side only):", error);
     return new Response(
-      JSON.stringify({ 
-        error: error instanceof Error ? error.message : "Erreur inconnue. Vérifiez que le serveur LLM est accessible." 
-      }),
+      JSON.stringify({ error: "Une erreur est survenue. Veuillez réessayer." }),
       {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },

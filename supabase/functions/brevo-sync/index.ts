@@ -197,12 +197,11 @@ serve(async (req) => {
 
     throw new Error('Invalid action');
   } catch (error) {
-    console.error('Error in brevo-sync:', error);
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Detailed error (server-side only):', error);
     return new Response(
-      JSON.stringify({ error: errorMessage }),
+      JSON.stringify({ error: 'Une erreur est survenue lors de la synchronisation. Veuillez réessayer.' }),
       { 
-        status: 400, 
+        status: 500, 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
       }
     );
