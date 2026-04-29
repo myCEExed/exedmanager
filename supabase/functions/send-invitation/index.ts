@@ -203,9 +203,9 @@ const handler = async (req: Request): Promise<Response> => {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (error: any) {
-    console.error("Error in send-invitation function:", error);
+    console.error("Detailed error (server-side only):", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: "Une erreur est survenue lors de l'envoi de l'invitation. Veuillez réessayer." }),
       {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
