@@ -13,7 +13,7 @@ import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo-sm.jpg";
 import { translateAuthError, isUserAlreadyExistsError } from "@/lib/authErrors";
 
 const signInSchema = z.object({
@@ -306,6 +306,10 @@ const Auth = () => {
             <img 
               src={logo} 
               alt="CentraleSupélec EXED Campus Casablanca" 
+              width={240}
+              height={190}
+              loading="eager"
+              decoding="async"
               className="h-20 w-auto object-contain"
             />
           </div>
