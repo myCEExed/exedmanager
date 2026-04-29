@@ -43,11 +43,8 @@ export const usePhotoUpload = () => {
 
       if (uploadError) throw uploadError;
 
-      const { data: { publicUrl } } = supabase.storage
-        .from('stagiaire-photos')
-        .getPublicUrl(filePath);
-
-      return publicUrl;
+      // Bucket privé : on stocke le path. Une URL signée est générée au rendu.
+      return `stagiaire-photos/${filePath}`;
     } catch (error) {
       console.error('Error uploading photo:', error);
       toast({
