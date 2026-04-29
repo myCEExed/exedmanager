@@ -730,7 +730,7 @@ export default function Stagiaires() {
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <Avatar className="w-16 h-16">
-                    <AvatarImage src={stagiaire.photo_url || undefined} alt={`${stagiaire.prenom} ${stagiaire.nom}`} />
+                    <SignedAvatarImage photoUrl={stagiaire.photo_url} fallbackBucket="stagiaire-photos" alt={`${stagiaire.prenom} ${stagiaire.nom}`} />
                     <AvatarFallback>
                       {stagiaire.prenom[0]}{stagiaire.nom[0]}
                     </AvatarFallback>
