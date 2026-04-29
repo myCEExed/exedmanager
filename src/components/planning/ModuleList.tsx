@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { SignedAvatarImage } from "@/components/SignedAvatarImage";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ModulePlanning, Conflict } from "@/hooks/usePlanningConflicts";
 import { cn } from "@/lib/utils";
